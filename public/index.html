@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Citas</title>
+      <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+      <link rel="stylesheet" href="css/style.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link rel="shortcut icon" type="image/png" href="images/logo.png"/>
+      <link href="../favicon.png" rel="apple-touch-icon" />
+      <link href="../favicon.png" rel="apple-touch-icon" sizes="152x152" />
+      <link href="../favicon.png" rel="apple-touch-icon" sizes="167x167" />
+      <link href="../favicon.png" rel="apple-touch-icon" sizes="180x180" />
+      <link href="../favicon.png" rel="icon" sizes="192x192" />
+      <link href="../favicon.png" rel="icon" sizes="128x128" />
+      
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-database.js"></script>
+      <script src="js/firebase.js"></script>
+      <script src="js/index.js"></script>
+      
+      <p class="message"> </p>
+      
+    </head>
+
+    <body>
+            
+      <!--Sidenav-->
+      <ul id="slide-out" class="sidenav sidenav-fixed blue-grey darken-4 z-depth-1" style="width: 240px;">
+        <li><div class="user-view">
+          <div class="background"></div>
+          <!--<a href="#user"><img class="circle center-align" src="images/logo.png"></a>
+          <a href="#name"><span class="white-text name">John Doe</span></a>
+          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
+        </div></li>
+        <li><a id="menu1" class="grey-text text-lighten-2" href="#!"><i class="material-icons grey-text text-lighten-2">apps</i>Citas</a></li>
+        <li><div class="divider"></div></li>
+        <!--<li><a class="grey-text text-lighten-2" href="#!" onclick="salir()"><i class="material-icons grey-text text-lighten-2">chevron_left</i>Salir</a></li>-->
+        <li><a class="subheader grey-text text-lighten-2" style="font-size:12px;">© 2018, Derechos Reservados.</a></li>
+      </ul>
+      
+      <main>
+        <!--Menu movil-->
+        <a href="#" data-target="slide-out" class="sidenav-trigger hide-on-med-and-up"><i class="material-icons">menu</i></a>
+      
+      <!--Work container-->
+      <div id="work-place">
+          <div class="row blue white-text" id="module-title">
+  <div class="col s12 center-align">
+    <h5>Administrar citas</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 right-align">
+    <a id="nueva-cita" class="circle-btn waves-effect waves-light btn-small blue white-text" onclick="$('#module-form').show();$(this).hide();$('input').val('');$('#enviardata').show();$('#editardata').hide()"><i class="material-icons left">add_circle_outline</i>Nueva cita</a>
+  </div>
+</div>
+
+<div class="row z-depth-2" id="module-form">
+  <div class="col s12">
+    <!--Formulario-->
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="nombre" type="text" class="validate">
+        <label for="nombre">Nombre</label>
+      </div>
+      <div class="input-field col s12 m4">
+        <input id="correo" type="text" class="validate">
+        <label for="correo">Correo</label>
+      </div>
+      <div class="input-field col s12 m4">
+        <input id="telefono" type="text" class="validate">
+        <label for="telefono">Telefono</label>
+      </div>
+      <div class="input-field col s12 m4">
+        <input id="ciudad" type="text" class="validate">
+        <label for="ciudad">Ciudad</label>
+      </div>
+    </div>
+     <div class="row">
+      <div class="input-field col s12 m6">
+        <input id="poliza" type="text" class="validate">
+        <label for="poliza">No. Poliza</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="serie" type="text" class="validate">
+        <label for="serie">No. Serie</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m4">
+        <input id="asignacion" type="text" class="validate">
+        <label for="asignacion">Asignacion</label>
+      </div>
+      <div class="input-field col s12 m4">
+        <input id="cita" type="text" class="validate">
+        <label for="cita">Cita</label>
+      </div>
+      <div class="input-field col s12 m4">
+        <input id="cierre" type="text" class="validate">
+        <label for="cierre">Cierre</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12 m6">
+        <input id="dias" type="text" class="validate">
+        <label for="dias">Dias</label>
+      </div>
+      <div class="input-field col s12 m6">
+        <input id="status" type="text" class="validate">
+        <label for="cierre">Status</label>
+      </div>
+    </div>
+    <div class="row right-align">
+      <div class="col s12"> 
+        <div class="col s10">
+          <a href="#!" class="cancel-btn" onclick="$('#module-form').hide();$('#nueva-cita').show();">Cancelar</a>
+        </div>
+        <div class="col s2">
+          <button id="enviardata" class="btn waves-effect waves-light light-blue white-text" type="submit" name="action" onclick="enviarDatos()">Guardar</button>
+          <button id="editardata" class="btn waves-effect waves-light light-blue white-text" type="submit" name="action" onclick="editarDatos()">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="overflow-x:auto;">
+  <div class="col s12">
+   <!-- //Tabla con los condominios-->
+    <table class="striped">
+      <thead>
+        <th></th>
+        <th>Poliza</th>
+        <th>Asegurado</th>
+        <th>Ciudad</th>
+        <th>Asignacion</th>
+        <th>Dias</th>
+        <th>Status</th>
+        <th></th>
+      </thead>
+      <tbody id="citas-rows">
+      </tbody>
+    </table>
+  </div>
+</div>
+
+      </div>
+      </main>
+      
+      
+
+      <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('.sidenav').sidenav();
+      }) 
+    </script>
+    </body>
+  </html>
